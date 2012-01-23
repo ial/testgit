@@ -6,7 +6,7 @@
 
 int main(int argc,char *argv[])
 {
-	std::cout << "Hello, Igor" << std::endl; 
+	std::cout << "Hello, Igor!" << std::endl; 
 	return 0;
 }
 
