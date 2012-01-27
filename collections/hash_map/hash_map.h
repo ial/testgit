@@ -73,7 +73,7 @@ template <class Key, class T>
 void hash_erase(vector<list<pair<Key,T> > >& arr,const pair<Key,T>& val )
 {
 	size_t hs = hash_value(val.first,arr.size());
-	vector<list<T>::iterator i = find(arr[hs].begin(),arr[hs].end(),val);
+	list<pair<Key,T> >::iterator i = find(arr[hs].begin(),arr[hs].end(),val);
 	if (i != arr[hs].end())
 		arr[hs].erase(i);
 	
