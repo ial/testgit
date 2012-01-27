@@ -23,7 +23,7 @@ int main(int argc[], char *argv[])
 	a.erase(pii("324",323));
 	ASSERT_FALSE(a.find(pii("324",323)));
 
-	a.insert(pii("123",123456732));
+	a.insert(pii("123",123456732));             
 	ASSERT_FALSE(a.find(pii("123",32)));
 	ASSERT_TRUE(a.find(pii("123",123456732)));
 	a.insert(pii("1234",123456732));
