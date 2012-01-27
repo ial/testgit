@@ -6,7 +6,8 @@
 #include <utility>
 #include <algorithm>
 #include <unordered_map>
-#include "hash_map.h"
+
+#include <hash_map.h>
 
 using namespace std;
 

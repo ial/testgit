@@ -22,7 +22,7 @@ public:
 //	T& operator[](const Key&);
 //	const T& operator[](const Key&);
 	
-	size_t size() const { return size; }
+	size_t size() const { return cnt_size; }
 	T& insert(const pair<Key,T>&);
 	void erase(const pair<Key,T>&);
 	bool find(const pair<Key,T>&);

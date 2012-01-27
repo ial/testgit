@@ -1,1 +1,1 @@
-add_library (hashmap_lib hash_map.h) 
+add_library (hashmap_lib hash_map.cpp) 
