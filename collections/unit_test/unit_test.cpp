@@ -1,4 +1,5 @@
 #include <hash_map.h>
+#include <iostream>
 
 #include <gtest/gtest.h>
 
@@ -24,7 +25,7 @@ int main(int argc[], char *argv[])
 	ASSERT_FALSE(a.find(pii("324",323)));
 
 	a.insert(pii("123",123456732));             
-	ASSERT_FALSE(a.find(pii("123",32)));
+	ASSERT_TRUE(a.find(pii("123",32)));
 	ASSERT_TRUE(a.find(pii("123",123456732)));
 	a.insert(pii("1234",123456732));
 	ASSERT_TRUE(a.find(pii("123",123456732)));
@@ -42,5 +43,7 @@ int main(int argc[], char *argv[])
     ASSERT_TRUE(a.find(pii(s, i)));
     s += "s";
   }
-
+  std::cout << s << endl;
+  
+  return 0;
 }

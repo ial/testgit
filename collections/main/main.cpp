@@ -28,7 +28,7 @@ int main(int argc[], char *argv[])
 	a.erase(pii("324",323));
 	if (a.find(pii("324",323))) cout << "3" << endl;
 	
-
+	cout << "Well" << a.size() << endl;
 	return 0;
 }
 	
