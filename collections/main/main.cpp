@@ -17,18 +17,26 @@ typedef pair<string,int> pii;
 
 int main(int argc[], char *argv[])
 {
+	hash_map<string,int> m;
+	m.set_value("23",152);
+	cout << m.get_value("23") << endl;
+	cout << m.get_value("2") << endl;
+	cout << m.find("23") << endl;
+	m.erase("23");
+	cout << m.find("23") << endl;
+	cout << m.find("2") << endl;
+	cout << m.find("3") << endl;
 	
-	hash_map<string,int> a;
-	a.insert(pii("123",32));
-	a.insert(pii("324",323));
-	a.insert(pii("324324",4334));
-	if (a.find(pii("123",32))) cout << "1" << endl;
-	if (a.find(pii("32",3222))) cout << "2" << endl;
-	if (a.find(pii("324",323))) cout << "3" << endl;
-	a.erase(pii("324",323));
-	if (a.find(pii("324",323))) cout << "3" << endl;
+	hash_map<int,string> k;
+	k.set_value(12,"Hello");
+	k.set_value(24,"World");
+	cout << k.get_value(12) << " " << k.get_value(24) << endl;
+	cout << k.find(12) << endl;
+	cout << k.get_value(2) << endl;
+	k.erase(12);
+	cout << k.get_value(12) << " " << k.get_value(24) << endl;
 	
-	cout << "Well" << a.size() << endl;
+
 	return 0;
 }
 	
