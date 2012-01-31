@@ -8,7 +8,7 @@ using namespace std;
 
 typedef unsigned long long ull;
 
-const size_t sz = 30011; //  max size for vector (prime number)
+const size_t N = 30011; //  max size for vector (prime number)
 
 
 template <class Key, class T>
@@ -22,12 +22,12 @@ public:
 //	T& operator[](const Key&);
 //	const T& operator[](const Key&);
 	
-	size_t size() const { return cnt_size; }
+	size_t size() const { return sz; }
 	T& insert(const pair<Key,T>&);
 	void erase(const pair<Key,T>&);
 	bool find(const pair<Key,T>&);
 private:
-	size_t cnt_size;
+	size_t sz;
 	vector< list<pair<Key,T> > > hashes;
 };
 
@@ -48,12 +48,13 @@ size_t hash_value(int val, int m)
 }
 
 template <class Key,class T>
-T& hash_insert( vector<list<pair<Key,T> > >& arr, const pair<Key,T>& val)
+T& hash_insert( vector<list<pair<Key,T> > >& arr, const pair<Key,T>& val, size_t &sz)
 {
 	// It is neccessary to add an exception
 	size_t hs =  hash_value(val.first,arr.size());
 	list<pair<Key,T> >::iterator i = find(arr[hs].begin(),arr[hs].end(),val);		
 	if(i == arr[hs].end()) {
+		sz++;
 		arr[hs].push_back(val);
 		i = (--arr[hs].end());
 	}
@@ -70,19 +71,20 @@ bool hash_find(vector< list<pair<Key,T> > >& arr,const pair<Key,T>& val)
 }
 
 template <class Key, class T>
-void hash_erase(vector<list<pair<Key,T> > >& arr,const pair<Key,T>& val )
+void hash_erase(vector<list<pair<Key,T> > >& arr,const pair<Key,T>& val, size_t& sz)
 {
 	size_t hs = hash_value(val.first,arr.size());
 	list<pair<Key,T> >::iterator i = find(arr[hs].begin(),arr[hs].end(),val);
-	if (i != arr[hs].end())
+	if (i != arr[hs].end()) {
 		arr[hs].erase(i);
-	
+		--sz;
+	}
 }
 
 // hash_map
 template <class Key, class T>
 hash_map<Key,T>::hash_map()					// default constructor
-	:hashes(sz)	, cnt_size(0)		
+	:hashes(N)	, sz(0)		
 {
 }
 
@@ -110,7 +112,7 @@ T& hash_map<Key,T>::operator[](const Key& key)
  template <class Key, class T>
  void hash_map<Key,T>::erase(const pair<Key,T>& val)
  {
-	hash_erase(hashes,val);
+	hash_erase(hashes,val,sz);
  }
 
  template <class Key, class T>
@@ -123,6 +125,6 @@ T& hash_map<Key,T>::operator[](const Key& key)
  template <class Key, class T>
  T& hash_map<Key,T>::insert(const pair<Key,T>& val)
  {
-	return hash_insert(hashes,val);
+	return hash_insert(hashes,val,sz);
  }
  
