@@ -66,6 +66,7 @@ template <class Key, class Val>
 hash_map<Key,Val>::hash_map(const hash_map& obj)
 {
 	hashes = obj.hashes;
+	sz = obj.sz;
 }
 
 template <class Key, class Val>
@@ -73,6 +74,7 @@ hash_map<Key,Val>& hash_map<Key,Val>::operator=(const hash_map& obj)
 {
 	if (this != &obj)
 		hashes = obj.hashes;
+		sz = obj.sz;
 		return (*this);
 }
 
@@ -112,10 +114,12 @@ hash_map<Key,Val>& hash_map<Key,Val>::operator=(const hash_map& obj)
  {
 	// It is neccessary to add an exception
 	size_t hs =  hash_value(key,hashes.size());
-	if(find_key(hashes[hs],key) == hashes[hs].end()) 
+	auto i = find_key(hashes[hs],key);
+	if(i == hashes[hs].end()) 
 	{
 		sz++;
 		hashes[hs].push_back(pair<Key,Val>(key,val));
 	}
+	else (*i).second = val;
  }
  
